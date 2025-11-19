@@ -1,47 +1,42 @@
-import React from 'react';
-import styles from './ConfirmDeleteTeamDialog.module.css';
+import React from "react";
+import styles from "./ConfirmDeleteTeamDialog.module.css";
 
-interface ConfirmDeleteTeamDialogProps {
-  isOpen: boolean;
-  teamName?: string;
+interface Props {
+  teamName: string;
   onConfirm: () => void;
   onCancel: () => void;
 }
 
-const ConfirmDeleteTeamDialog: React.FC<ConfirmDeleteTeamDialogProps> = ({
-                                                                           isOpen,
-                                                                           teamName,
-                                                                           onConfirm,
-                                                                           onCancel
-                                                                         }) => {
-  if (!isOpen) return null;
-
+const ConfirmDeleteTeamDialog: React.FC<Props> = ({
+                                                    teamName,
+                                                    onConfirm,
+                                                    onCancel,
+                                                  }) => {
   return (
-    <dialog open className={styles.dialog}>
-      <div className={styles.container}>
-        <h2 className={styles.title}>Eliminar equipo</h2>
+    <div className={styles.overlay}>
+      <div className={styles.dialogBox}>
+        <div className={styles.header}>¿Eliminar el equipo?</div>
 
-        <p className={styles.message}>
-          {teamName
-            ? `¿Estás seguro que deseas eliminar el equipo “${teamName}”?`
-            : "¿Estás seguro que deseas eliminar este equipo?"}
-        </p>
+        <div className={styles.content}>
+          <p className={styles.message}>
+            Estás por eliminar el equipo <strong>{teamName}</strong>.
+            <br />
+            ¿Deseas continuar?
+          </p>
 
-        <div className={styles.buttonRow}>
-          <button className={styles.confirmBtn} onClick={onConfirm}>
-            Eliminar
-          </button>
+          <div className={styles.buttonsContainer}>
+            <button className={styles.confirmButton} onClick={onConfirm}>
+              Confirmar
+            </button>
 
-          <button className={styles.cancelBtn} onClick={onCancel}>
-            Cancelar
-          </button>
+            <button className={styles.cancelButton} onClick={onCancel}>
+              Cancelar
+            </button>
+          </div>
         </div>
       </div>
-    </dialog>
+    </div>
   );
 };
 
 export default ConfirmDeleteTeamDialog;
-
-
-//import ConfirmDeleteTeamDialog from '@components/ConfirmDeleteTeamDialog/ConfirmDeleteTeamDialog';
