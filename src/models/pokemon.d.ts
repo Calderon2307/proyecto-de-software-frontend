@@ -2,7 +2,6 @@ import { Move } from '@models/moves';
 import { Ability } from '@models/ability';
 import { TypeRelation } from '@models/types';
 
-export type ShortViewPokemon = Pick<PokemonInfo, 'name' | 'sprites' | 'types'>;
 type ChangePokemon = Pick<PokemonInfo, 'pokedexNumber' | 'name' | 'sprites'>;
 type StatusPokemon = 'legendario' | 'mitico' | 'pseudo-legendario' | 'normal';
 type PrevEvolution = Pick<PokemonInfo, 'name' | 'sprites' | 'pokedexNumber'>;
@@ -57,6 +56,8 @@ export interface PokemonSpecieInfo {
 }
 
 export type Pokemon = PokemonInfo & PokemonSpecieInfo;
+export type ShortViewPokemon = Pick<PokemonInfo, 'name' | 'sprites' | 'types'>;
+export type PokemonTeamMember = Pick<PokemonInfo, 'name' | 'sprites' | 'stats'>;
 export type PokemonCard = Pick<
   Pokemon,
   | 'pokemonId'

@@ -1,0 +1,160 @@
+.pokemonTeamItem {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  width: 585px;
+  min-height: 55px;
+  padding: 0.5rem 1rem;
+  background-color: rgb(var(--primary-color));
+  border: 1px solid rgb(var(--text-dark-color));
+  border-radius: 0.5rem;
+}
+
+.expandInfoTeam {
+  display: grid;
+  grid-template-areas:
+    'teamName . icons'
+    'expandTeam expandTeam expandTeam';
+  gap: 1rem;
+}
+
+.teamTitle {
+  grid-area: teamName;
+  font-family: var(--title-font), serif;
+  color: rgb(var(--text-light-color));
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.teamSection {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pokemonImgContainer {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgb(var(--text-light-color));
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.spriteExpanded {
+  width: 60px;
+  height: 60px;
+}
+
+.pokemonImg {
+  width: 100%;
+  height: 100%;
+}
+
+.iconsSection {
+  grid-area: icons;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.icon {
+  padding: 0.1rem;
+  font-size: 1.5rem;
+  color: rgb(var(--text-light-color));
+  cursor: pointer;
+  transition: all 250ms;
+  will-change: contents;
+  border-radius: 0.3rem;
+  /*border: 1px solid rgb(var(--text-light-color));*/
+}
+
+.iconLink {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+}
+
+.teamSectionExpanded {
+  grid-area: expandTeam;
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 1.5rem;
+}
+
+.pokemoInfoSection {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.pokemonName {
+  font-family: var(--text-font), serif;
+  color: rgb(var(--text-light-color));
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: capitalize;
+}
+
+.statsContainer {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.pokemonStatContainer {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.statWrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgb(var(--text-dark-color));
+  border-radius: 0.5rem;
+  background-color: rgb(var(--secondary-color));
+}
+
+.pokemonStat {
+  font-family: var(--text-font), serif;
+  color: rgb(var(--text-light-color));
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.pokemonStatTitle {
+  font-family: var(--text-font), serif;
+  color: rgb(var(--text-light-color));
+  font-size: 0.8rem;
+  font-weight: 650;
+}
+
+.shinyOn {
+  background-color: rgb(var(--POKEDEX-color));
+  color: rgb(var(--text-dark-color));
+}
+
+.expandOn {
+  background-color: rgb(var(--secondary-color));
+  /*color: rgb(var(--text-dark-color));*/
+}
+
+.icon:hover {
+  transform: scale(1.2);
+}

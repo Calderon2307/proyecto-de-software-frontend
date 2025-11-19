@@ -17,8 +17,10 @@ import CreateTeam from '@pages/CreateTeam/CreateTeam';
 import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
 import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDialog.tsx';
-import {Types} from '@data/types.ts';
+import {Types} from '@data/types.ts'; 
 
+import ShowTrainerTeam from '@components/ShowTrainerTeam/ShowTrainerTeam.tsx';
+import { exampleTeam } from '@data/pokemonTeam.test.ts';
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
@@ -34,40 +36,42 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      {/*<SearchItemContext.Provider value={searchValue}>*/}
-      {/*  <UpdateSearchItemContext.Provider value={handleSearchItem}>*/}
-      {/*    <SearchLabelContext.Provider value={search}>*/}
-      {/*      <UpdateSearchLabelContext.Provider value={handleSearchLabel}>*/}
-      {/*        <Routes>*/}
-      {/*          <Route path="/" element={<Home />} />*/}
-      {/*          <Route path="/search-pokemon" element={<SearchPokemon />} />*/}
-      {/*          <Route path="/search-type" element={<SearchType />} />*/}
-      {/*          <Route path="/search-region" element={<SearchRegion />} />*/}
-      {/*          <Route path="/search-item" element={<SearchItem />} />*/}
-      {/*          <Route*/}
-      {/*            path="/pokedex/:context/:value"*/}
-      {/*            element={<CompletePokedex />}*/}
-      {/*          />{' '}*/}
-      {/*          /!* POKEMONES ? *!/*/}
-      {/*          <Route path="/create-team" element={<CreateTeam />} />{' '}*/}
-      {/*          /!* POKEMON COMPLETO *!/*/}
-      {/*          <Route*/}
-      {/*            path="/pokemon/:pokemonId/:pokemonName"*/}
-      {/*            element={<Pokemon />}*/}
-      {/*          />*/}
-      {/*          <Route path="/items/:itemId/:itemName" element={<Item />} />*/}
-      {/*        </Routes>*/}
-      {/*      </UpdateSearchLabelContext.Provider>*/}
-      {/*    </SearchLabelContext.Provider>*/}
-      {/*  </UpdateSearchItemContext.Provider>*/}
-      {/*</SearchItemContext.Provider>*/}
-      <SelectionTypeDialog
-        isOpen={true}
-        types={Types}
-        onClose={() => console.log('close')}
-        onSelectType={(typeName) => console.log('selected', typeName)}
-      />
-
+      <SearchItemContext.Provider value={searchValue}>
+        <UpdateSearchItemContext.Provider value={handleSearchItem}>
+          <SearchLabelContext.Provider value={search}>
+            <UpdateSearchLabelContext.Provider value={handleSearchLabel}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search-pokemon" element={<SearchPokemon />} />
+                <Route path="/search-type" element={<SearchType />} />
+                <Route path="/search-region" element={<SearchRegion />} />
+                <Route path="/search-item" element={<SearchItem />} />
+                <Route
+                  path="/pokedex/:context/:value"
+                  element={<CompletePokedex />}
+                />{' '}
+                {/* POKEMONES ? */}
+                <Route path="/create-team" element={<CreateTeam />} />{' '}
+                {/* POKEMON COMPLETO */}
+                <Route
+                  path="/pokemon/:pokemonId/:pokemonName"
+                  element={<Pokemon />}
+                />
+                <Route path="/items/:itemId/:itemName" element={<Item />} />
+                <Route
+                  path="/preview"
+                  element={
+                    <ShowTrainerTeam
+                      teamName={exampleTeam.teamName}
+                      pokemonTeam={exampleTeam.pokemonTeam}
+                    />
+                  }
+                />
+              </Routes>
+            </UpdateSearchLabelContext.Provider>
+          </SearchLabelContext.Provider>
+        </UpdateSearchItemContext.Provider>
+      </SearchItemContext.Provider>
     </>
   );
 };
