@@ -1,0 +1,62 @@
+.backdrop {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.dialog {
+    background-color: white;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    width: 90%;
+    max-width: 480px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+
+
+    max-height: 80vh;      /* 👈 altura máxima */
+    overflow-y: auto;      /* 👈 scroll interno si se llena */
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.title {
+    margin: 0;
+    font-family: var(--title-font);
+    font-size: 1.25rem;
+    color: rgb(var(--text-dark-color));
+}
+
+.closeButton {
+    border: none;
+    background: transparent;
+    font-size: 1.2rem;
+    cursor: pointer;
+    line-height: 1;
+    padding: 0.25rem 0.5rem;
+}
+
+.closeButton:hover {
+    transform: scale(1.05);
+}
+
+.contentText {
+    font-family: var(--text-font);
+    font-size: 0.9rem;
+    color: rgba(var(--text-dark-color), 0.8);
+}
+
+.typesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.75rem;
+    margin-top: 1rem;
+}

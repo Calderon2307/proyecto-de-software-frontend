@@ -12,3 +12,4 @@ export type UpdateSearchLabelContextType = (
 export type SearchItemContextType = string;
 
 export type UpdateSearchItemContextType = (item: SearchItemContextType) => void;
+
