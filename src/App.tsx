@@ -1,12 +1,20 @@
 import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
+
+// Contexts
 import {
   SearchLabelContext,
   UpdateSearchLabelContext,
   SearchItemContext,
   UpdateSearchItemContext,
 } from '@context/SearchContext';
-import { SearchLabelContextType, SearchItemContextType } from './types/types';
+
+import {
+  SearchLabelContextType,
+  SearchItemContextType,
+} from './types/types';
+
+// Pages
 import Home from '@pages/Home/Home';
 import SearchPokemon from '@pages/SearchPokemon/SearchPokemon';
 import SearchType from '@pages/SearchType/SearchType';
@@ -17,8 +25,8 @@ import CreateTeam from '@pages/CreateTeam/CreateTeam';
 import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
 
-import ShowTrainerTeam from '@components/ShowTrainerTeam/ShowTrainerTeam.tsx';
-import { exampleTeam } from '@data/pokemonTeam.test.ts';
+
+import ComparePokemon from '@pages/ComparePokemon/ComparePokemon';
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
@@ -40,31 +48,33 @@ const App = (): JSX.Element => {
             <UpdateSearchLabelContext.Provider value={handleSearchLabel}>
               <Routes>
                 <Route path="/" element={<Home />} />
+
+                {/* Buscar */}
                 <Route path="/search-pokemon" element={<SearchPokemon />} />
                 <Route path="/search-type" element={<SearchType />} />
                 <Route path="/search-region" element={<SearchRegion />} />
                 <Route path="/search-item" element={<SearchItem />} />
+
+                {/* Pokedex completa */}
                 <Route
                   path="/pokedex/:context/:value"
                   element={<CompletePokedex />}
-                />{' '}
-                {/* POKEMONES ? */}
-                <Route path="/create-team" element={<CreateTeam />} />{' '}
-                {/* POKEMON COMPLETO */}
+                />
+
+                {/* Crear equipo */}
+                <Route path="/create-team" element={<CreateTeam />} />
+
+                {/* Pokémon individual */}
                 <Route
                   path="/pokemon/:pokemonId/:pokemonName"
                   element={<Pokemon />}
                 />
+
+                {/* Item individual */}
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
-                <Route
-                  path="/preview"
-                  element={
-                    <ShowTrainerTeam
-                      teamName={exampleTeam.teamName}
-                      pokemonTeam={exampleTeam.pokemonTeam}
-                    />
-                  }
-                />
+
+                {/* Ruta temporal de pruebas */}
+                <Route path="/preview" element={<ComparePokemon />} />
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>
