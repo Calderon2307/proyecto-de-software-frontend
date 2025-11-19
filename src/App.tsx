@@ -17,8 +17,7 @@ import CreateTeam from '@pages/CreateTeam/CreateTeam';
 import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
 
-import ShowTrainerTeam from '@components/ShowTrainerTeam/ShowTrainerTeam.tsx';
-import { exampleTeam } from '@data/pokemonTeam.test.ts';
+import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
@@ -56,15 +55,7 @@ const App = (): JSX.Element => {
                   element={<Pokemon />}
                 />
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
-                <Route
-                  path="/preview"
-                  element={
-                    <ShowTrainerTeam
-                      teamName={exampleTeam.teamName}
-                      pokemonTeam={exampleTeam.pokemonTeam}
-                    />
-                  }
-                />
+                <Route path="/preview" element={<SelectPokemonDialog />} />
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>
