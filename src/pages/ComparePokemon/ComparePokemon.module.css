@@ -1,0 +1,253 @@
+/* Fondo y layout general (basado en SearchPokemon.module.css) */
+.wrapperBody {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: flex-start;
+  align-items: stretch;
+  gap: 1.5rem;
+  width: 100%;
+  padding: 1.5rem 2rem 2.5rem;
+  background-size: 15%;
+  background-image: linear-gradient(
+      rgba(var(--background-color), 0.8),
+      rgba(var(--background-color), 0.8)
+    ),
+    url(/src/assets/styles/background.jpg);
+}
+
+/* Título y barra superior */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 1.8rem;
+  text-align: left;
+  text-transform: uppercase;
+  color: rgb(var(--text-dark-color));
+}
+
+/* Historial + Shiny button (lado derecho) */
+.actionsContainer {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.historyButton {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--text-font);
+  font-size: 0.9rem;
+  color: rgb(var(--text-dark-color));
+}
+
+.historyText {
+  text-decoration: underline;
+}
+
+.historyIcon {
+  font-weight: 700;
+}
+
+.shinyButton {
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-family: var(--text-font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background-color: #4caf50;
+  color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.shinyButton:hover {
+  filter: brightness(1.05);
+}
+
+/* Sección de columnas de comparación */
+.columnsWrapper {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* Tarjeta de Pokémon comparado */
+.pokemonColumn {
+  width: 260px;
+  min-height: 650px;
+  background: #f3f4f7;
+  border-radius: 22px;
+  padding: 1rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.12);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Botón X (React Icons) */
+.closeBtn {
+  position: absolute;
+  right: -8px;
+  top: -8px;
+  background: #ffffff;
+  border-radius: 50%;
+  border: 2px solid #ff4d4d;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.2s;
+}
+
+.closeIcon {
+  color: #ff4d4d;
+  width: 22px;
+  height: 22px;
+}
+
+.closeBtn:hover {
+  background: #ff4d4d;
+}
+
+.closeBtn:hover .closeIcon {
+  color: #ffffff;
+}
+
+/* Total Stats */
+.totalStatsBox {
+  width: 75%;
+  background: #74a6ff;
+  border-radius: 10px;
+  text-align: center;
+  padding: 0.4rem 0;
+  margin-top: 0.7rem;
+  margin-bottom: 1rem;
+}
+
+.totalNumber {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: #ffffff;
+}
+
+.totalLabel {
+  color: #ffffff;
+  font-size: 0.85rem;
+}
+
+/* Stats individuales */
+.statsList {
+  list-style: none;
+  width: 100%;
+  padding: 0;
+}
+
+.statRow {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 0.45rem 0.7rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.statValue {
+  color: #2e8a36;
+  font-weight: 700;
+}
+
+/* Abilities */
+.abilitiesTitle {
+  margin-top: 1rem;
+  font-weight: 600;
+  text-align: center;
+  font-family: var(--text-font);
+}
+
+.abilitiesList {
+  list-style: none;
+  padding: 0;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.ability {
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+  font-family: var(--text-font);
+}
+
+.hiddenAbility {
+  color: #d40000;
+  font-weight: 700;
+}
+
+/* Columna para agregar Pokémon */
+.addColumn {
+  width: 260px;
+  min-height: 650px;
+  background: #e3e8ee;
+  border-radius: 22px;
+  padding: 1rem;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Responsivo similar al de SearchPokemon */
+@media (max-width: 1024px) {
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .wrapperBody {
+    padding: 1.2rem;
+  }
+
+  .title {
+    font-size: 1.3rem;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .actionsContainer {
+    align-self: flex-end;
+  }
+}
+
+@media (max-width: 420px) {
+  .title {
+    font-size: 1.2rem;
+  }
+
+  .columnsWrapper {
+    gap: 1.4rem;
+  }
+}
