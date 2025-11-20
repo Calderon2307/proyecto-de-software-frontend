@@ -1,0 +1,57 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: white;
+  width: 100%;
+  background-image: linear-gradient(
+          rgba(var(--background-color), 0.8),
+          rgba(var(--background-color), 0.8)
+  ),
+  url(/src/assets/tests/pr0n-hub-hands-3505689270.jpg);
+}
+
+.box {
+  text-align: center;
+}
+
+.title {
+  font-size: 3.2rem;                  /* Igual a text-5xl */
+  font-weight: 900;                   /* Bold Pokémon */
+  color: #ffcb05;                     /* Pokémon yellow */
+  font-family: "Arial Black", sans-serif;
+  margin-bottom: 1rem;
+
+  /* Borde azul grueso estilo Pokémon */
+  text-shadow:
+    2px 2px 0 #2a75bb,
+    -2px -2px 0 #2a75bb,
+    2px -2px 0 #2a75bb,
+    -2px 2px 0 #2a75bb;
+}
+
+.subtitle {
+  color: #444;
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+}
+
+.button {
+  background-color: #2e7d32;         /* Verde Pokémon */
+  color: white;
+  padding: 0.75rem 2.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+  transition: background-color 0.2s ease;
+}
+
+.button:hover {
+  background-color: #1b5e20;         /* Verde más oscuro */
+}
+
+

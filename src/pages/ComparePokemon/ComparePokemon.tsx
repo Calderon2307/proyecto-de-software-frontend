@@ -8,27 +8,33 @@ import SelectPokemonBtn from '@components/SelectPokemonBtn/SelectPokemonBtn';
 import { fetchPokemonInfo } from '@services/PokemonServices/pokemonSummaryService';
 import { fetchPokemonSpecie } from '@services/PokemonServices/pokemonMainDetailsService';
 
-import { Pokemon } from '@models/pokemon';
+import { Pokemon, ShortViewPokemon } from '@models/pokemon';
 import { capitalizeText } from '@utils/formatText';
 
 import faviconIcon from '@assets/icons/Favicon.png';
 import { MdClose } from 'react-icons/md';
 
+import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog';
+
 import style from '@pages/ComparePokemon/ComparePokemon.module.css';
 
 const ComparePokemon = () => {
   const [comparedPokemons, setComparedPokemons] = useState<Pokemon[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
 
-  const handleAddPokemon = async () => {
-    //add search bar component to search for a pokemon to add
-    const name = window.prompt('Enter the Pokémon name to compare:');
-    if (!name) return;
 
+  const getStatTotal = (pokemon: Pokemon) =>
+    pokemon.stats.reduce((acc, s) => acc + s.baseStat, 0);
+
+  // Abre modal al presionar '+'
+  const handleAddPokemon = () => {
+    setIsDialogOpen(true);
+  };
+
+  // Recibe ShortViewPokemon desde el modal
+  const handleSelectedPokemon = async (shortPokemon: ShortViewPokemon) => {
     try {
-      setLoading(true);
-
-      const info = await fetchPokemonInfo(name.toLowerCase());
+      const info = await fetchPokemonInfo(shortPokemon.name.toLowerCase());
       const specie = await fetchPokemonSpecie(info.pokemonId);
 
       const fullPokemon: Pokemon = {
@@ -37,19 +43,16 @@ const ComparePokemon = () => {
       };
 
       setComparedPokemons((prev) => [...prev, fullPokemon]);
-    } catch (err) {
+    } catch (error) {
       alert('Error fetching Pokémon');
     } finally {
-      setLoading(false);
+      setIsDialogOpen(false);
     }
   };
 
   const handleRemovePokemon = (id: number) => {
     setComparedPokemons((prev) => prev.filter((pkm) => pkm.pokemonId !== id));
   };
-
-  const getStatTotal = (pokemon: Pokemon) =>
-    pokemon.stats.reduce((acc, s) => acc + s.baseStat, 0);
 
   return (
     <>
@@ -58,9 +61,16 @@ const ComparePokemon = () => {
         <link rel="shortcut icon" href={faviconIcon} type="image/x-icon" />
       </Helmet>
 
- 
-      <Header mode="complete" />
+      <Header/>
 
+      <SelectPokemonDialog
+        componentMode="single"
+        isOpen={isDialogOpen}
+        setIsOpen={setIsDialogOpen}
+        setFavoritePokemon={(p) => {
+          if (p) handleSelectedPokemon(p);
+        }}
+      />
 
       <div className={style.wrapperBody}>
         <header className={style.headerRow}>
@@ -83,16 +93,13 @@ const ComparePokemon = () => {
 
             return (
               <article key={pokemon.pokemonId} className={style.pokemonColumn}>
-                {/* Botón de eliminar con React Icons */}
                 <button
                   className={style.closeBtn}
                   onClick={() => handleRemovePokemon(pokemon.pokemonId)}
-                  type="button"
                 >
                   <MdClose className={style.closeIcon} />
                 </button>
 
-                {/* Parte superior: sprite, nombre, tipos */}
                 <PokemonSummaryView
                   sprites={pokemon.sprites}
                   name={pokemon.name}
@@ -101,13 +108,11 @@ const ComparePokemon = () => {
                   size="medium"
                 />
 
-                {/* Total Stats */}
                 <div className={style.totalStatsBox}>
                   <p className={style.totalNumber}>{total}</p>
                   <p className={style.totalLabel}>Total Stats</p>
                 </div>
 
-                {/* Stats individuales */}
                 <ul className={style.statsList}>
                   {pokemon.stats.map((stat) => (
                     <li key={stat.statName} className={style.statRow}>
@@ -117,7 +122,6 @@ const ComparePokemon = () => {
                   ))}
                 </ul>
 
-                {/* Abilities (hidden en rojo) */}
                 <h3 className={style.abilitiesTitle}>Abilities</h3>
                 <ul className={style.abilitiesList}>
                   {pokemon.abilities.map((ab) => (
@@ -135,7 +139,7 @@ const ComparePokemon = () => {
             );
           })}
 
-          {/* Columna para agregar Pokémon */}
+          {/* Botón "Add Pokémon" */}
           <article className={style.addColumn}>
             <SelectPokemonBtn onClick={handleAddPokemon} />
           </article>
