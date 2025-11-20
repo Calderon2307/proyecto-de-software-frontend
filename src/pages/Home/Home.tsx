@@ -19,15 +19,7 @@ const Home = (): JSX.Element => {
             POKEDEX
           </h1>
           <section className={`${style.buttonsSection}`}>
-            <Link to="/create-team" className="navLink" style={{
-              padding: "8px 14px",
-              background: "rgb(46,110,210)",
-              color: "white",
-              borderRadius: "6px",
-              fontSize: "0.9rem"
-            }}>
-              Crear Equipo (Temporal)
-            </Link>
+
             <Link
               to={'/search-pokemon'}
               className={`${style.button}`}
