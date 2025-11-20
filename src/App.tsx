@@ -62,6 +62,8 @@ const App = (): JSX.Element => {
                 />
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
                 <Route path="/preview" element={<SelectPokemonDialog />} />
+                <Route path="/create-team" element={<CreateTeam />} />
+
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>

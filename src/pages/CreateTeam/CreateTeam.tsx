@@ -11,16 +11,20 @@ import faviconIcon from '@assets/icons/Favicon_Alt.png';
 import style from '@pages/CreateTeam/CreateTeam.module.css';
 import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
 
+import NameTeamDialog from "@components/NameTeamDialog/NameTeamDialog";
+
+
 const CreateTeam = () => {
   const { width } = useWindowSize();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [showNameDialog, setShowNameDialog] = useState<boolean>(false);
+
   const [teamArr, setTeamArr] = useState<(ShortViewPokemon | null)[]>(() => {
     const storedTeam = localStorage.getItem('PokemonTeam');
     return storedTeam ? JSON.parse(storedTeam) : new Array(6).fill(null);
   });
 
   const [showShiny, setShowShiny] = useState<boolean>(false);
-
   const [idSelected, setIdSelected] = useState<number>(-1);
 
   let pokemonViewSize: 'normal' | 'medium' | 'small' = 'normal';
@@ -29,8 +33,6 @@ const CreateTeam = () => {
     pokemonViewSize = 'medium';
   } else if (width <= 615) {
     pokemonViewSize = 'small';
-  } else {
-    pokemonViewSize = 'normal';
   }
 
   const handleDialogOpen = (index: number) => {
@@ -43,18 +45,27 @@ const CreateTeam = () => {
       (item: ShortViewPokemon | null, index: number) => {
         if (indexSelected === index) return null;
         else return item;
-      },
+      }
     );
 
     setTeamArr(newTeamArr);
   };
 
+  // NUEVO: al presionar Save Team → abrir el modal
   const handleSaveTeam = () => {
-    localStorage.setItem('PokemonTeam', JSON.stringify(teamArr));
+    if (!teamComplete) {
+      setShowNameDialog(true);
+    }
+  };
 
-    alert(
-      `Your team:\n${teamArr.map((pokemon: ShortViewPokemon | null, index) => `${index + 1}-) ${capitalizeText(pokemon!.name)}`).join('\n')}\nWas successfully saved!`,
-    );
+  // NUEVO: cuando confirme nombre
+  const handleConfirmTeamName = (name: string) => {
+    console.log("Nombre del equipo:", name); // solo para ver que funciona
+
+    // limpiar equipo por ahora
+    setTeamArr(new Array(6).fill(null));
+
+    // en el futuro aquí enviamos al backend
   };
 
   const teamComplete = teamArr.includes(null);
@@ -65,6 +76,8 @@ const CreateTeam = () => {
         <title>Create Pokémon Team | POKÉDEX</title>
         <link rel="shortcut icon" href={faviconIcon} type="image/x-icon" />
       </Helmet>
+
+      {/* Diálogo para seleccionar Pokémon */}
       <SelectPokemonDialog
         componentMode={'team'}
         idSelected={idSelected}
@@ -73,9 +86,20 @@ const CreateTeam = () => {
         setIsOpen={setIsOpen}
         setTeamArr={setTeamArr}
       />
+
+      {/* NUEVO: modal para nombrar el equipo */}
+      {showNameDialog && (
+        <NameTeamDialog
+          onConfirm={handleConfirmTeamName}
+          onClose={() => setShowNameDialog(false)}
+        />
+      )}
+
       <Header mode={'complete'} showSearchBar={false} />
+
       <article className={`${style.contentSection}`}>
         <h2 className={`${style.title}`}>Build your Team</h2>
+
         <button
           onClick={() => setShowShiny(!showShiny)}
           disabled={teamComplete}
@@ -84,6 +108,7 @@ const CreateTeam = () => {
         >
           {showShiny ? 'Normal version' : 'Shiny version'}
         </button>
+
         <section className={`${style.teamWrapper}`}>
           {teamArr.map((item: ShortViewPokemon | null, index: number) => {
             if (item === null) {
@@ -97,10 +122,7 @@ const CreateTeam = () => {
               const formatedName = capitalizeText(item.name);
 
               return (
-                <article
-                  key={index}
-                  className={`${style.selectedPokemonWrapper}`}
-                >
+                <article key={index} className={`${style.selectedPokemonWrapper}`}>
                   <button
                     className={`${style.closeBtn}`}
                     onClick={() => handleDeletePokemon(index)}
@@ -124,6 +146,7 @@ const CreateTeam = () => {
             }
           })}
         </section>
+
         <section className={`${style.saveBtnSection}`}>
           <button
             onClick={handleSaveTeam}

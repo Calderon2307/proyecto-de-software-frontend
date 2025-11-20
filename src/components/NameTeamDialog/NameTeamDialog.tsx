@@ -3,10 +3,17 @@ import styles from "./NameTeamDialog.module.css";
 
 interface Props {
   onConfirm: (teamName: string) => void;
+  onClose: () => void;
 }
 
-const NameTeamDialog: FC<Props> = ({ onConfirm }) => {
+const NameTeamDialog: FC<Props> = ({ onConfirm, onClose }) => {
   const [teamName, setTeamName] = useState("");
+
+  const handleConfirm = () => {
+    if (teamName.trim() === "") return;
+    onConfirm(teamName);
+    onClose();
+  };
 
   return (
     <div className={styles.backdrop}>
@@ -27,10 +34,7 @@ const NameTeamDialog: FC<Props> = ({ onConfirm }) => {
         </div>
 
         <div className={styles.actions}>
-          <button
-            className={styles.confirmButton}
-            onClick={() => onConfirm(teamName)}
-          >
+          <button className={styles.confirmButton} onClick={handleConfirm}>
             Confirmar
           </button>
         </div>
