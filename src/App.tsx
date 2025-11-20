@@ -18,10 +18,7 @@ import CompletePokedex from '@pages/CompletePokedex/CompletePokedex';
 import CreateTeam from '@pages/CreateTeam/CreateTeam';
 import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
-import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDialog.tsx';
-import {Types} from '@data/types.ts';
-import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
-import Header from '@components/Header/Header.tsx';
+import ComparePokemon from '@pages/ComparePokemon/ComparePokemon';
 import EntrenadorInfo from '@components/EntrenadorInfo/EntrenadorInfo.tsx';
 
 const App = (): JSX.Element => {
@@ -63,6 +60,8 @@ const App = (): JSX.Element => {
                 />
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
                 <Route path="/preview" element={<EntrenadorInfo />} />
+                <Route path="/compare-pokemon" element={<ComparePokemon />} />
+
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>
