@@ -19,7 +19,7 @@ import Item from '@pages/Item/Item';
 import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDialog.tsx';
 import {Types} from '@data/types.ts'; 
 
-import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
+import EntrenadorInfo from '@components/EntrenadorInfo/EntrenadorInfo.tsx';
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
@@ -57,7 +57,7 @@ const App = (): JSX.Element => {
                   element={<Pokemon />}
                 />
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
-                <Route path="/preview" element={<SelectPokemonDialog />} />
+                <Route path="/preview" element={<EntrenadorInfo />} />
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>
