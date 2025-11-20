@@ -35,37 +35,35 @@ const App = (): JSX.Element => {
 
   return (
     <>
-      {/*<SearchItemContext.Provider value={searchValue}>*/}
-      {/*  <UpdateSearchItemContext.Provider value={handleSearchItem}>*/}
-      {/*    <SearchLabelContext.Provider value={search}>*/}
-      {/*      <UpdateSearchLabelContext.Provider value={handleSearchLabel}>*/}
-      {/*        <Routes>*/}
-      {/*          <Route path="/" element={<Home />} />*/}
-      {/*          <Route path="/search-pokemon" element={<SearchPokemon />} />*/}
-      {/*          <Route path="/search-type" element={<SearchType />} />*/}
-      {/*          <Route path="/search-region" element={<SearchRegion />} />*/}
-      {/*          <Route path="/search-item" element={<SearchItem />} />*/}
-      {/*          <Route*/}
-      {/*            path="/pokedex/:context/:value"*/}
-      {/*            element={<CompletePokedex />}*/}
-      {/*          />{' '}*/}
-      {/*          /!* POKEMONES ? *!/*/}
-      {/*          <Route path="/create-team" element={<CreateTeam />} />{' '}*/}
-      {/*          /!* POKEMON COMPLETO *!/*/}
-      {/*          <Route*/}
-      {/*            path="/pokemon/:pokemonId/:pokemonName"*/}
-      {/*            element={<Pokemon />}*/}
-      {/*          />*/}
-      {/*          <Route path="/items/:itemId/:itemName" element={<Item />} />*/}
-      {/*          <Route path="/preview" element={<SelectPokemonDialog />} />*/}
-      {/*        </Routes>*/}
-      {/*      </UpdateSearchLabelContext.Provider>*/}
-      {/*    </SearchLabelContext.Provider>*/}
-      {/*  </UpdateSearchItemContext.Provider>*/}
-      {/*</SearchItemContext.Provider>*/}
-      <Routes>
-        <Route path="/preview-header" element={<Header />} />
-      </Routes>
+      <SearchItemContext.Provider value={searchValue}>
+        <UpdateSearchItemContext.Provider value={handleSearchItem}>
+          <SearchLabelContext.Provider value={search}>
+            <UpdateSearchLabelContext.Provider value={handleSearchLabel}>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/search-pokemon" element={<SearchPokemon />} />
+                <Route path="/search-type" element={<SearchType />} />
+                <Route path="/search-region" element={<SearchRegion />} />
+                <Route path="/search-item" element={<SearchItem />} />
+                <Route
+                  path="/pokedex/:context/:value"
+                  element={<CompletePokedex />}
+                />{' '}
+                {/* POKEMONES ? */}
+                <Route path="/create-team" element={<CreateTeam />} />{' '}
+                {/* POKEMON COMPLETO */}
+                <Route
+                  path="/pokemon/:pokemonId/:pokemonName"
+                  element={<Pokemon />}
+                />
+                <Route path="/items/:itemId/:itemName" element={<Item />} />
+                <Route path="/preview" element={<SelectPokemonDialog />} />
+              </Routes>
+            </UpdateSearchLabelContext.Provider>
+          </SearchLabelContext.Provider>
+        </UpdateSearchItemContext.Provider>
+      </SearchItemContext.Provider>
+
     </>
   );
 };
