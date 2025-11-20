@@ -18,11 +18,13 @@ import CompletePokedex from '@pages/CompletePokedex/CompletePokedex';
 import CreateTeam from '@pages/CreateTeam/CreateTeam';
 import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
+import Item from '@pages/Item/Item';
 import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDialog.tsx';
 import { Types } from '@data/types.ts';
 import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
 import Header from '@components/Header/Header.tsx';
 import EntrenadorPreferences from '@components/EntrenadorPreferences/EntrenadorPreferences.tsx';
+
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
