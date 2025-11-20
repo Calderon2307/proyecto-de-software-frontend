@@ -8,6 +8,8 @@ import {
 } from '@context/SearchContext';
 import { SearchLabelContextType, SearchItemContextType } from './types/types';
 import Home from '@pages/Home/Home';
+import Index from '@pages/Index/Index';
+import Auth from '@pages/Auth/Auth';
 import SearchPokemon from '@pages/SearchPokemon/SearchPokemon';
 import SearchType from '@pages/SearchType/SearchType';
 import SearchRegion from '@pages/SearchRegion/SearchRegion';
@@ -40,8 +42,10 @@ const App = (): JSX.Element => {
           <SearchLabelContext.Provider value={search}>
             <UpdateSearchLabelContext.Provider value={handleSearchLabel}>
               <Routes>
-                <Route path="/" element={<Home />} />
+                <Route path="/Home" element={<Home />} />
+                 <Route path="/" element={<Index />} />
                 <Route path="/search-pokemon" element={<SearchPokemon />} />
+                <Route path="/Auth" element={<Auth />} />
                 <Route path="/search-type" element={<SearchType />} />
                 <Route path="/search-region" element={<SearchRegion />} />
                 <Route path="/search-item" element={<SearchItem />} />

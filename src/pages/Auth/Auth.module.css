@@ -1,0 +1,152 @@
+/* Fondo */
+.container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to bottom right, #dbe8ff, #f6dff9);
+  padding: 1rem;
+}
+
+/* Logo Pokémon */
+.logo {
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: #ffcb05;
+  margin-bottom: 1.5rem;
+  font-family: "Arial Black", sans-serif;
+  text-shadow:
+    3px 3px 0 #2a75bb,
+    -3px -3px 0 #2a75bb,
+    3px -3px 0 #2a75bb,
+    -3px 3px 0 #2a75bb;
+}
+
+/* Card */
+.card {
+  width: 100%;
+  max-width: 410px;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Header */
+.cardHeader {
+  background: #5c82db;
+  padding: 1.2rem 0;
+  text-align: center;
+}
+
+.cardHeader h2 {
+  margin: 0;
+  color: white;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Form */
+.form {
+  padding: 2rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.1rem;
+}
+
+.field label {
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+
+/* Inputs */
+input,
+select {
+  height: 2.8rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  padding: 0 12px;
+  font-size: 0.95rem;
+  outline: none;
+}
+
+input:focus,
+select:focus {
+  border-color: #5c82db;
+  box-shadow: 0 0 3px #5c82db;
+}
+
+/* Swap form link */
+.swap {
+  text-align: center;
+  margin: 0.3rem 0 1rem 0;
+}
+
+.swap button {
+  background: none;
+  border: none;
+  color: #5c82db;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Submit button */
+.submitBtn {
+  width: 100%;
+  height: 3rem;
+  background-color: #2e7d32;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.submitBtn:hover {
+  background-color: #1b5e20;
+}
+
+/* Divider */
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.5rem 0;
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  height: 1px;
+  flex-grow: 1;
+  background: #ddd;
+  margin: 0 8px;
+}
+
+/* Google Button */
+.googleBtn {
+  width: 100%;
+  height: 2.8rem;
+  border: 1px solid #d0d0d0;
+  border-radius: 6px;
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.googleBtn img {
+  width: 18px;
+}
