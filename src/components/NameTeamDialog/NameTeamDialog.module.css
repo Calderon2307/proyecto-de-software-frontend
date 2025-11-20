@@ -1,76 +1,68 @@
-.dialog {
-    border: none;
-    padding: 0;
-    background: transparent;
+.backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.55);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
 }
 
-.container {
-    background: #ffffff;
-    width: 360px;
-    padding: 0;
+.dialog {
+    background: rgb(var(--background-color));
+    width: 440px;
     border-radius: 12px;
-    box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.25);
     overflow: hidden;
+    box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.35);
+    text-align: center;
+    font-family: var(--text-font);
 }
 
 .header {
-    background-color: #3b82f6;
+    background: rgb(var(--primary-color));
     padding: 18px;
-    text-align: center;
+}
+
+.title {
     color: white;
     font-size: 1.4rem;
+    margin: 0;
     font-weight: 700;
 }
 
 .body {
-    background: #e5e7eb;
-    padding: 22px;
-    text-align: center;
+    padding: 24px;
 }
 
-.inputBox {
+.input {
     width: 100%;
-    padding: 12px;
+    padding: 12px 14px;
     border-radius: 10px;
-    border: 2px solid #d1d5db;
+    border: 1px solid rgba(0,0,0,0.25);
     font-size: 1rem;
-    outline: none;
+    font-family: var(--text-font);
 }
 
-.footer {
-    padding: 18px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    background-color: #ffffff;
+.actions {
+    padding: 22px;
 }
 
-.confirmBtn {
-    background-color: #4ade80;
-    padding: 10px 0;
-    font-size: 1rem;
-    border-radius: 10px;
+.confirmButton {
+    background: rgb(var(--secondary-color));
+    color: white;
+    padding: 12px 32px;
     border: none;
-    font-weight: 600;
-    cursor: pointer;
-    color: #1f2937;
-}
-
-.confirmBtn:hover {
-    background-color: #34d399;
-}
-
-.cancelBtn {
-    background-color: #d1d5db;
-    padding: 10px 0;
-    font-size: 1rem;
     border-radius: 10px;
-    border: none;
-    font-weight: 600;
     cursor: pointer;
-    color: #111827;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: 0.2s ease;
+    font-family: var(--text-font);
 }
 
-.cancelBtn:hover {
-    background-color: #9ca3af;
+.confirmButton:hover {
+    opacity: 0.9;
 }

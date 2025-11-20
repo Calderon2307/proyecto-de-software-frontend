@@ -1,49 +1,42 @@
-import React from "react";
+import React, { FC, useState } from "react";
 import styles from "./NameTeamDialog.module.css";
 
-interface NameTeamDialogProps {
-  isOpen: boolean;
-  teamName: string;
-  onChangeName: (value: string) => void;
-  onConfirm: () => void;
-  onCancel: () => void;
+interface Props {
+  onConfirm: (teamName: string) => void;
 }
 
-const NameTeamDialog: React.FC<NameTeamDialogProps> = ({
-                                                         isOpen,
-                                                         teamName,
-                                                         onChangeName,
-                                                         onConfirm,
-                                                         onCancel
-                                                       }) => {
-  if (!isOpen) return null;
+const NameTeamDialog: FC<Props> = ({ onConfirm }) => {
+  const [teamName, setTeamName] = useState("");
 
   return (
-    <dialog open className={styles.dialog}>
-      <div className={styles.container}>
-        <div className={styles.header}>Dale un nombre a tu equipo</div>
+    <div className={styles.backdrop}>
+      <div className={styles.dialog}>
+
+        <div className={styles.header}>
+          <h2 className={styles.title}>Dale un nombre a tu equipo</h2>
+        </div>
 
         <div className={styles.body}>
           <input
             type="text"
-            className={styles.inputBox}
-            placeholder="Equipo Pokémon"
+            placeholder="Nombre del equipo"
             value={teamName}
-            onChange={(e) => onChangeName(e.target.value)}
+            onChange={(e) => setTeamName(e.target.value)}
+            className={styles.input}
           />
         </div>
 
-        <div className={styles.footer}>
-          <button className={styles.confirmBtn} onClick={onConfirm}>
+        <div className={styles.actions}>
+          <button
+            className={styles.confirmButton}
+            onClick={() => onConfirm(teamName)}
+          >
             Confirmar
           </button>
-
-          <button className={styles.cancelBtn} onClick={onCancel}>
-            Cancelar
-          </button>
         </div>
+
       </div>
-    </dialog>
+    </div>
   );
 };
 
