@@ -17,7 +17,7 @@ import CreateTeam from '@pages/CreateTeam/CreateTeam';
 import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
 import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDialog.tsx';
-import {Types} from '@data/types.ts'; 
+import {Types} from '@data/types.ts';
 
 import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
 
