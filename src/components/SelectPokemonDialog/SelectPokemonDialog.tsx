@@ -24,7 +24,7 @@ type SelectPokemonDialogProps = {
   teamArr?: (ShortViewPokemon | null)[];
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   setTeamArr?: Dispatch<SetStateAction<(ShortViewPokemon | null)[]>>;
-  setFavoritePokemon?: Dispatch<SetStateAction<ShortViewPokemon | null>>;
+  setFavoritePokemon?: (pokemon: ShortViewPokemon) => void;
 };
 
 const SelectPokemonDialog = ({

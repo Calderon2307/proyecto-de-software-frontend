@@ -1,0 +1,158 @@
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background-color: rgba(0, 0, 0, 0.35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Caja del modal */
+.dialog {
+  width: min(1020px, 95%);
+  background-color: #dbe5f7;
+  border-radius: 28px;
+  padding: 1.8rem 2rem 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+  /* Para evitar que crezca más de la cuenta si hay muchas regiones */
+  max-height: 90vh; 
+}
+
+/* Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.title {
+  font-family: var(--title-font);
+  font-size: 1.9rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* Botón de cierre (X) */
+.closeBtn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closeIcon {
+  width: 22px;
+  height: 22px;
+  color: rgba(0, 0, 0, 0.75);
+}
+
+/* Barra de búsqueda */
+.searchWrapper {
+  margin-top: 0.1rem;
+}
+
+.searchInner {
+  width: 100%;
+  height: 42px;
+  border-radius: 999px;
+  background-color: #fdfdfd;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.18) inset;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.searchIconBox {
+  width: 58px;
+  background-color: #46b267;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchIcon {
+  width: 20px;
+  height: 20px;
+  color: #15231f;
+}
+
+.searchInput {
+  flex: 1 1 auto;
+  border: none;
+  outline: none;
+  padding: 0 1rem;
+  font-family: var(--text-font);
+  font-size: 0.9rem;
+  background-color: transparent;
+}
+
+/* --- SECCIÓN MODIFICADA PARA CENTRAR CARDS --- */
+
+.grid {
+  margin-top: 1.1rem;
+  /* Usamos Flexbox para permitir el centrado de la última fila */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem 1.1rem;
+  
+  /* Opcional: Habilita scroll si hay muchas regiones */
+  overflow-y: auto;
+  padding: 0.5rem; /* Espacio para que no se corte la sombra hover */
+}
+
+/* Selector universal para los hijos directos del grid (las cards) */
+.grid > * {
+  /* Cálculo: 100% / 4 columnas - el espacio del gap */
+  width: calc(25% - 1.1rem);
+  min-width: 0; /* Previene desbordamientos en flex items */
+}
+
+/* Responsivo */
+@media (max-width: 1150px) {
+  .dialog {
+    width: min(900px, 95%);
+  }
+
+  /* Cambio a 3 columnas */
+  .grid > * {
+    width: calc(33.333% - 1.1rem);
+  }
+}
+
+@media (max-width: 900px) {
+  .dialog {
+    padding: 1.6rem 1.4rem 1.8rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+
+  .grid > * {
+    width: calc(50% - 1.1rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.4rem;
+  }
+
+ 
+  .grid > * {
+    width: 100%;
+  }
+}

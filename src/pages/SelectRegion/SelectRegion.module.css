@@ -1,0 +1,115 @@
+.wrapperBody {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 2rem 1.5rem 2.5rem;
+  background-size: 15%;
+  background-image: linear-gradient(
+      rgba(var(--background-color), 0.8),
+      rgba(var(--background-color), 0.8)
+    ),
+    url(/src/assets/styles/background.jpg);
+}
+
+/* Tarjeta central del registro */
+.card {
+  width: min(700px, 100%);
+  background-color: rgba(219, 229, 247, 0.95);
+  border-radius: 28px;
+  padding: 2.2rem 2.5rem 2rem;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.title {
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+
+.subtitle {
+  font-family: var(--text-font);
+  font-size: 0.95rem;
+  text-align: center;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+/* Campo de región */
+.fieldGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.8rem;
+}
+
+.label {
+  font-family: var(--text-font);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.regionInput {
+  border-radius: 999px;
+  border: none;
+  background-color: #fdfdfd;
+  padding: 0.7rem 1.2rem;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.18) inset;
+  font-family: var(--text-font);
+  font-size: 0.95rem;
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.regionInput:hover {
+  filter: brightness(0.99);
+}
+
+.regionText {
+  color: rgba(0, 0, 0, 0.85);
+}
+
+/* Botones */
+.actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.3rem;
+}
+
+.primaryBtn {
+  min-width: 160px;
+  padding: 0.7rem 1.6rem;
+  border-radius: 999px;
+  border: none;
+  background-color: #4a7dff;
+  color: #ffffff;
+  font-family: var(--text-font);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+}
+
+.primaryBtn:hover {
+  filter: brightness(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card {
+    padding: 1.8rem 1.4rem 1.8rem;
+  }
+
+  .title {
+    font-size: 1.6rem;
+  }
+}
