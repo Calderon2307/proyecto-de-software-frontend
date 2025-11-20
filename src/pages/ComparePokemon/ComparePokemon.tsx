@@ -72,7 +72,6 @@ const ComparePokemon = () => {
         }}
       />
 
-
       <div className={style.wrapperBody}>
         <header className={style.headerRow}>
           <h2 className={style.title}>Compare Pokémon</h2>
