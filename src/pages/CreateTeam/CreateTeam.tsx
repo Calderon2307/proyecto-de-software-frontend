@@ -66,6 +66,7 @@ const CreateTeam = () => {
         <link rel="shortcut icon" href={faviconIcon} type="image/x-icon" />
       </Helmet>
       <SelectPokemonDialog
+        componentMode={'team'}
         idSelected={idSelected}
         isOpen={isOpen}
         teamArr={teamArr}
