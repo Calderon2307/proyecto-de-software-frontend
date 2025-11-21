@@ -9,7 +9,7 @@
           rgba(var(--background-color), 0.8),
           rgba(var(--background-color), 0.8)
   ),
-  url(/src/assets/tests/pr0n-hub-hands-3505689270.jpg);
+  url(/src/assets/styles/background.jpg);
 }
 
 .box {
@@ -17,18 +17,24 @@
 }
 
 .title {
-  font-size: 3.2rem;                  /* Igual a text-5xl */
-  font-weight: 900;                   /* Bold Pokémon */
-  color: #ffcb05;                     /* Pokémon yellow */
-  font-family: "Arial Black", sans-serif;
-  margin-bottom: 1rem;
-
-  /* Borde azul grueso estilo Pokémon */
+ text-align: center;
+  color: rgb(var(--POKEDEX-color));
+  font-family: var(--POKEDEX-font);
+  font-size: 48px;
   text-shadow:
-    2px 2px 0 #2a75bb,
-    -2px -2px 0 #2a75bb,
-    2px -2px 0 #2a75bb,
-    -2px 2px 0 #2a75bb;
+    -6px 6px 0px rgb(var(--primary-color)),
+    -5.5px 5.5px 0px rgb(var(--primary-color)),
+    -5px 5px 0px rgb(var(--primary-color)),
+    -4.5px 4.5px 0px rgb(var(--primary-color)),
+    -4px 4px 0px rgb(var(--primary-color)),
+    -3.5px 3.5px 0px rgb(var(--primary-color)),
+    -3px 3px 0px rgb(var(--primary-color)),
+    -2.5px 2.5px 0px rgb(var(--primary-color)),
+    -2px 2px 0px rgb(var(--primary-color)),
+    -1.5px 1.5px 0px rgb(var(--primary-color)),
+    -1px 1px 0px rgb(var(--primary-color)),
+    -0.5px 0.5px 0px rgb(var(--primary-color));
+  cursor: default;
 }
 
 .subtitle {
