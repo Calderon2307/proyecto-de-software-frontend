@@ -1,10 +1,17 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Auth.module.css";
+import { useAuth } from "@/contexts/AuthContext"; // 🛑 Importación del Hook de Autenticación
 
 const Auth = () => {
   const navigate = useNavigate();
+  // 🛑 Usar el contexto para las funciones de autenticación
+  const { login, register } = useAuth(); 
+  
   const [isLogin, setIsLogin] = useState(true);
+  const [loading, setLoading] = useState(false); // Nuevo: Estado de carga
+  const [error, setError] = useState<string | null>(null); // Nuevo: Estado de error
+  
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,6 +21,7 @@ const Auth = () => {
     favoritePokemon: "",
   });
 
+  // --- Arrays de Datos (No Cambian) ---
   const pokemonTypes = [
     "Normal", "Fire", "Water", "Electric", "Grass", "Ice",
     "Fighting", "Poison", "Ground", "Flying", "Psychic", "Bug",
@@ -31,20 +39,54 @@ const Auth = () => {
     "Sceptile", "Gengar", "Umbreon", "Sylveon", "Rayquaza"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // --- Lógica del Formulario JWT/Local ---
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setLoading(true);
+    setError(null);
+    
+    try {
+      if (isLogin) {
+        // LOGIN JWT (Envía solo email y password)
+        await login(formData.email, formData.password);
+      } else {
+        // REGISTRO (Envía todos los campos)
+        await register({
+            name: formData.name,
+            email: formData.email,
+            password: formData.password,
+            preferredRegion: formData.preferredRegion,
+            preferredType: formData.preferredType,
+            favoritePokemon: formData.favoritePokemon,
+        }); 
+      }
+      navigate("/Home"); // Redirigir al Home tras éxito
+    } catch (err) {
+      // Manejar el error de Axios y mostrar mensaje
+      const errMsg = err.response?.data?.message || "Error al conectar con la API o credenciales inválidas.";
+      setError(errMsg);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (field: string, value: string) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
+  
+  // --- Lógica del Botón Google (OAuth2) ---
+  const handleGoogleLogin = () => {
+    // Redirige al endpoint de Spring Security que inicia el flujo de Google
+    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+  };
+
 
   return (
     <div className={styles.container}>
       
       {/* Pokémon Logo */}
       <h1 className={styles.logo}>POKEDEX</h1>
+      {error && <div className={styles.error}>{error}</div>} {/* Mostrar Error */}
 
       {/* Auth Card */}
       <div className={styles.card}>
@@ -54,6 +96,7 @@ const Auth = () => {
 
         <form className={styles.form} onSubmit={handleSubmit}>
           
+          {/* Campo Name (Solo Registro) */}
           {!isLogin && (
             <div className={styles.field}>
               <label>Name:</label>
@@ -66,6 +109,7 @@ const Auth = () => {
             </div>
           )}
 
+          {/* Campo Email */}
           <div className={styles.field}>
             <label>Email:</label>
             <input
@@ -76,6 +120,7 @@ const Auth = () => {
             />
           </div>
 
+          {/* Campo Password */}
           <div className={styles.field}>
             <label>Password:</label>
             <input
@@ -86,8 +131,10 @@ const Auth = () => {
             />
           </div>
 
+          {/* Campos de Registro Adicionales */}
           {!isLogin && (
             <>
+              {/* Preferred Type */}
               <div className={styles.field}>
                 <label>Preferred Type:</label>
                 <select
@@ -103,6 +150,7 @@ const Auth = () => {
                 </select>
               </div>
 
+              {/* Preferred Region */}
               <div className={styles.field}>
                 <label>Preferred Region:</label>
                 <select
@@ -120,6 +168,7 @@ const Auth = () => {
                 </select>
               </div>
 
+              {/* Favorite Pokémon */}
               <div className={styles.field}>
                 <label>Favorite Pokémon:</label>
                 <select
@@ -141,14 +190,14 @@ const Auth = () => {
 
           {/* Switch form */}
           <div className={styles.swap}>
-            <button type="button" onClick={() => setIsLogin(!isLogin)}>
+            <button type="button" onClick={() => setIsLogin(!isLogin)} disabled={loading}>
               {isLogin ? "¿Do not have an account yet?" : "¿Do you have an account?"}
             </button>
           </div>
 
-          {/* Submit */}
-          <button onClick={() => navigate("/Home")} type="submit" className={styles.submitBtn}> 
-            catch them all!
+          {/* Submit Button */}
+          <button type="submit" className={styles.submitBtn} disabled={loading}> 
+            {loading ? 'Cargando...' : 'catch them all!'}
           </button>
 
           {/* Divider */}
@@ -157,7 +206,7 @@ const Auth = () => {
           </div>
 
           {/* Google Button */}
-          <button type="button" className={styles.googleBtn}>
+          <button type="button" className={styles.googleBtn} onClick={handleGoogleLogin} disabled={loading}>
             <img src="https://www.svgrepo.com/show/355037/google.svg" alt="google" />
             Continue with Google
           </button>

@@ -10,6 +10,7 @@ import { SearchLabelContextType, SearchItemContextType } from './types/types';
 import Home from '@pages/Home/Home';
 import Index from '@pages/Index/Index';
 import Auth from '@pages/Auth/Auth';
+import OAuthCallback from '@/pages/OAuthCallback/OAuthCallback';
 import SearchPokemon from '@pages/SearchPokemon/SearchPokemon';
 import SearchType from '@pages/SearchType/SearchType';
 import SearchRegion from '@pages/SearchRegion/SearchRegion';
@@ -23,6 +24,7 @@ import { Types } from '@data/types.ts';
 import Header from '@components/Header/Header.tsx';
 import EntrenadorPreferences from '@components/EntrenadorPreferences/EntrenadorPreferences.tsx';
 import ComparePokemon from '@pages/ComparePokemon/ComparePokemon';
+import { AuthProvider } from '@context/AuthContext';
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
@@ -38,6 +40,7 @@ const App = (): JSX.Element => {
 
   return (
     <>
+    <AuthProvider>
       <SearchItemContext.Provider value={searchValue}>
         <UpdateSearchItemContext.Provider value={handleSearchItem}>
           <SearchLabelContext.Provider value={search}>
@@ -46,6 +49,7 @@ const App = (): JSX.Element => {
                 <Route path="/Home" element={<Home />} />
                 <Route path="/" element={<Index />} />
                 <Route path="/search-pokemon" element={<SearchPokemon />} />
+                <Route path="/oauth/redirect" element={<OAuthCallback />} />
                 <Route path="/Auth" element={<Auth />} />
                 <Route path="/search-type" element={<SearchType />} />
                 <Route path="/search-region" element={<SearchRegion />} />
@@ -69,6 +73,7 @@ const App = (): JSX.Element => {
           </SearchLabelContext.Provider>
         </UpdateSearchItemContext.Provider>
       </SearchItemContext.Provider>
+      </AuthProvider>
     </>
   );
 };
