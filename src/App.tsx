@@ -22,7 +22,7 @@ import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDi
 import { Types } from '@data/types.ts';
 import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
 import Header from '@components/Header/Header.tsx';
-import EntrenadorPreferences from '@components/EntrenadorPreferences/EntrenadorPreferences.tsx';
+import EntrenadorProfile from '@pages/EntrenadorProfile/EntrenadorProfile.tsx';
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
@@ -62,7 +62,7 @@ const App = (): JSX.Element => {
                   element={<Pokemon />}
                 />
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
-                <Route path="/preview" element={<EntrenadorPreferences />} />
+                <Route path="/preview" element={<EntrenadorProfile />} />
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>
