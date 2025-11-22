@@ -7,20 +7,35 @@
   justify-content: center;
   background: linear-gradient(to bottom right, #dbe8ff, #f6dff9);
   padding: 1rem;
+    width: 100%;
+  background-image: linear-gradient(
+          rgba(var(--background-color), 0.8),
+          rgba(var(--background-color), 0.8)
+  ),
+  url(/src/assets/styles/background.jpg);
 }
 
 /* Logo Pokémon */
 .logo {
-  font-size: 3.5rem;
-  font-weight: 900;
-  color: #ffcb05;
-  margin-bottom: 1.5rem;
-  font-family: "Arial Black", sans-serif;
+ text-align: center;
+  color: rgb(var(--POKEDEX-color));
+  font-family: var(--POKEDEX-font);
+  font-size: 48px;
   text-shadow:
-    3px 3px 0 #2a75bb,
-    -3px -3px 0 #2a75bb,
-    3px -3px 0 #2a75bb,
-    -3px 3px 0 #2a75bb;
+    -6px 6px 0px rgb(var(--primary-color)),
+    -5.5px 5.5px 0px rgb(var(--primary-color)),
+    -5px 5px 0px rgb(var(--primary-color)),
+    -4.5px 4.5px 0px rgb(var(--primary-color)),
+    -4px 4px 0px rgb(var(--primary-color)),
+    -3.5px 3.5px 0px rgb(var(--primary-color)),
+    -3px 3px 0px rgb(var(--primary-color)),
+    -2.5px 2.5px 0px rgb(var(--primary-color)),
+    -2px 2px 0px rgb(var(--primary-color)),
+    -1.5px 1.5px 0px rgb(var(--primary-color)),
+    -1px 1px 0px rgb(var(--primary-color)),
+    -0.5px 0.5px 0px rgb(var(--primary-color));
+  cursor: default;
+    padding: 1rem;
 }
 
 /* Card */

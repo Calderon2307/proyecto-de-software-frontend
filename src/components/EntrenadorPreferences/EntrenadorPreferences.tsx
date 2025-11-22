@@ -6,7 +6,7 @@ import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import styles from '@components/EntrenadorPreferences/EntrenadorPreferences.module.css';
 
 import { Types } from '@data/types';
-import { moreTeams } from '@data/teams.test';
+//import { moreTeams } from '@data/teams.test';
 import { ShortViewPokemon } from '@models/pokemon';
 import { PokemonTeam } from '@models/pokemonTeam';
 

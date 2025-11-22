@@ -14,6 +14,11 @@
   background-color: rgb(var(--primary-color));
 }
 
+/* Estilo específico para el modo partial (por si quieres tunearlo luego) */
+.partial {
+  /* De momento no cambia nada respecto a .header */
+}
+
 /* Logo Pokedex a la izquierda */
 .titleLink {
   text-decoration: none;
