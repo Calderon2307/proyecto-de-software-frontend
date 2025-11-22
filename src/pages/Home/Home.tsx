@@ -4,8 +4,11 @@ import { Helmet } from 'react-helmet-async';
 import Header from '@/components/Header/Header';
 import faviconIcon from '@assets/icons/Favicon.png';
 import style from '@pages/Home/Home.module.css';
+import LogoutButton from '@/components/LogoutButton/LogoutButton';
+
 
 const Home = (): JSX.Element => {
+
   return (
     <>
       <Helmet>
@@ -57,7 +60,7 @@ const Home = (): JSX.Element => {
             </Link>
           </section>
         </div>
-        {/*<Footer />*/}
+<LogoutButton />
       </div>
     </>
   );
