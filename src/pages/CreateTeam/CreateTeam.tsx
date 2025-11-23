@@ -10,12 +10,16 @@ import closeIconLight from '@assets/icons/closeLight.png';
 import faviconIcon from '@assets/icons/Favicon_Alt.png';
 import style from '@pages/CreateTeam/CreateTeam.module.css';
 import SelectPokemonDialog from '@components/SelectPokemonDialog/SelectPokemonDialog.tsx';
-
 import NameTeamDialog from "@components/NameTeamDialog/NameTeamDialog";
-
+import { convertShortToSaveDB } from "@/utils/shortInfoPokemonToDB";
+import { useAuth } from "@/contexts/AuthContext";
+import { createTeamService } from "@/services/TeamServices/createTeamService";
 
 const CreateTeam = () => {
   const { width } = useWindowSize();
+
+  const { user } = useAuth();
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [showNameDialog, setShowNameDialog] = useState<boolean>(false);
 
@@ -58,14 +62,47 @@ const CreateTeam = () => {
     }
   };
 
-  // NUEVO: cuando confirme nombre
-  const handleConfirmTeamName = (name: string) => {
-    console.log("Nombre del equipo:", name); // solo para ver que funciona
+  const handleConfirmTeamName = async (teamName: string) => {
+    try {
+      if (!user || !user.id) {
+        alert("No se encontró el usuario autenticado.");
+        return;
+      }
 
-    // limpiar equipo por ahora
-    setTeamArr(new Array(6).fill(null));
+      // Convertir cada Pokémon
+      const convertedTeam = teamArr
+        .filter((p) => p !== null)
+        .map((p) => convertShortToSaveDB(p));
 
-    // en el futuro aquí enviamos al backend
+      if (convertedTeam.length === 0) {
+        alert("Selecciona al menos un Pokémon para crear el equipo.");
+        return;
+      }
+
+      const body = {
+        id_entrenador: user.id,
+        nombre_equipo: teamName,
+        equipo_pokemon: convertedTeam,
+      };
+
+      console.log(" Enviando equipo al backend:", body);
+
+      const response = await createTeamService(body);
+
+      console.log(" Equipo creado exitosamente:", response);
+
+      alert("Equipo creado con éxito!");
+
+      // Limpiar equipo
+      setTeamArr(new Array(6).fill(null));
+
+      // Cerrar modal
+      setShowNameDialog(false);
+
+    } catch (error: any) {
+      console.error(" Error al crear equipo:", error);
+      alert("Error al crear equipo: " + (error.response?.data?.message || "Revisa la consola"));
+    }
   };
 
   const teamComplete = teamArr.includes(null);
@@ -87,7 +124,7 @@ const CreateTeam = () => {
         setTeamArr={setTeamArr}
       />
 
-      {/* NUEVO: modal para nombrar el equipo */}
+      {/* Modal para nombrar el equipo */}
       {showNameDialog && (
         <NameTeamDialog
           onConfirm={handleConfirmTeamName}
