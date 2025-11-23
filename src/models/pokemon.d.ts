@@ -57,7 +57,17 @@ export interface PokemonSpecieInfo {
 
 export type Pokemon = PokemonInfo & PokemonSpecieInfo;
 export type ShortViewPokemon = Pick<PokemonInfo, 'name' | 'sprites' | 'types'>;
-export type PokemonTeamMember = Pick<PokemonInfo, 'name' | 'sprites' | 'stats'>;
+export type PokemonTeamMember = Pick<
+  PokemonInfo,
+  'name' | 'sprites' | 'stats'
+> & { posicionEquipo: number };
+export type PokemonToSaveInBD = {
+  nombre: PokemonInfo['name'];
+  tipos: PokemonInfo['types'];
+  stats: PokemonInfo['stats'];
+  sprite_normal: PokemonInfo['sprites']['normal'];
+  sprite_shiny: PokemonInfo['sprites']['shiny'];
+};
 export type PokemonCard = Pick<
   Pokemon,
   | 'pokemonId'

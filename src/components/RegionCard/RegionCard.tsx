@@ -5,7 +5,7 @@ import style from '@components/RegionCard/RegionCard.module.css';
 
 type RegionCardProps = {
   region: RegionData;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 const RegionCard: React.FC<RegionCardProps> = ({ region, onClick }) => {

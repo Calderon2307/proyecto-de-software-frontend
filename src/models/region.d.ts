@@ -5,3 +5,5 @@ export interface RegionData {
   pokedexStart?: number; //offset
   pokedexEnd?: number; //limit
 }
+
+//export type EntrenadorFavoriteRegion = Pick<RegionData, 'name' | 'img'>

@@ -12,11 +12,11 @@ interface SelectionTypeDialogProps {
 }
 
 const SelectionTypeDialog: React.FC<SelectionTypeDialogProps> = ({
-                                                                   isOpen,
-                                                                   types,
-                                                                   onClose,
-                                                                   onSelectType,
-                                                                 }): React.JSX.Element | null => {
+  isOpen,
+  types,
+  onClose,
+  onSelectType,
+}): React.JSX.Element | null => {
   if (!isOpen) {
     return null;
   }
@@ -42,15 +42,10 @@ const SelectionTypeDialog: React.FC<SelectionTypeDialogProps> = ({
 
           <div className={style.typesGrid}>
             {types.map((type) => (
-              <TypeButton
-                key={type.name}
-                name={type.name}
-                logo={type.logo}
-              />
+              <TypeButton key={type.name} name={type.name} logo={type.logo} />
             ))}
           </div>
         </main>
-
       </div>
     </div>
   );
