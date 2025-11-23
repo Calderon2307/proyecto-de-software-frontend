@@ -55,6 +55,15 @@ type PokemonFormsApiModel = {
   url: string;
 };
 
+type StatsApiModel = {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+};
+
 export const fetchPokemonSpecie = async (
   pokemonId: number,
 ): Promise<PokemonSpecieInfo> => {
@@ -160,6 +169,16 @@ const fetchPokemonForms = async (
       const pokemonTypes = pokemonData.types.map(
         (type: TypeAPIModel) => type.type.name,
       );
+
+      const pokemonStats = await pokemonData.stats.map(
+        (stat: StatsApiModel) => {
+          return {
+            statName: stat.stat.name,
+            baseStat: stat.base_stat,
+          };
+        },
+      );
+
       const femaleVersion: ShortViewPokemon = {
         name: 'female-'.concat(pokemonData.name),
         types: pokemonTypes,
@@ -174,6 +193,7 @@ const fetchPokemonForms = async (
             pokemonData.sprites.other.home.front_female ??
             pokemonData.sprites.front_female,
         },
+        stats: pokemonStats,
       };
 
       allPokemonForms.push(femaleVersion);
@@ -189,6 +209,15 @@ const fetchPokemonForms = async (
 
         const variantTypes = pokemonVariantData.types.map(
           (type: TypeAPIModel) => type.type.name,
+        );
+
+        const pokemonStats = await pokemonData.stats.map(
+          (stat: StatsApiModel) => {
+            return {
+              statName: stat.stat.name,
+              baseStat: stat.base_stat,
+            };
+          },
         );
 
         return {
@@ -208,6 +237,7 @@ const fetchPokemonForms = async (
                 .front_default ??
               pokemonVariantData.sprites.front_default,
           },
+          stats: pokemonStats,
         };
       }),
     );
@@ -223,6 +253,15 @@ const fetchPokemonForms = async (
             (type: TypeAPIModel) => type.type.name,
           );
 
+          const pokemonStats = await pokemonData.stats.map(
+            (stat: StatsApiModel) => {
+              return {
+                statName: stat.stat.name,
+                baseStat: stat.base_stat,
+              };
+            },
+          );
+
           return {
             name: formData.name,
             types: pokemonTypes,
@@ -231,6 +270,7 @@ const fetchPokemonForms = async (
               shiny: formData.sprites.front_shiny,
               icon: formData.sprites.front_default,
             },
+            stats: pokemonStats,
           };
         }),
       );
@@ -281,6 +321,13 @@ const fetchShortViewData = async (url: string): Promise<ShortViewPokemon> => {
       (type: TypeAPIModel) => type.type.name,
     );
 
+    const pokemonStats = await pokemonData.stats.map((stat: StatsApiModel) => {
+      return {
+        statName: stat.stat.name,
+        baseStat: stat.base_stat,
+      };
+    });
+
     return {
       name: pokemonData.name,
       types: pokemonTypes,
@@ -296,6 +343,7 @@ const fetchShortViewData = async (url: string): Promise<ShortViewPokemon> => {
           pokemonData.sprites.other['official-artwork'].front_default ??
           pokemonData.sprites.front_default,
       },
+      stats: pokemonStats,
     };
   } catch (error) {
     throw new Error(

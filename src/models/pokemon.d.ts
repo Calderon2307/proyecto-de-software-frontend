@@ -56,7 +56,15 @@ export interface PokemonSpecieInfo {
 }
 
 export type Pokemon = PokemonInfo & PokemonSpecieInfo;
-export type ShortViewPokemon = Pick<PokemonInfo, 'name' | 'sprites' | 'types'>;
+export type ShortViewPokemon = Pick<
+  PokemonInfo,
+  'name' | 'sprites' | 'types'
+> & {
+  stats?: PokemonInfo['stats'];
+};
+//HACER STATS OPCIONALES PARA DESPUES Y CARGARLAS CUANDO SEA NECESARIO
+
+//MODELOS DE LA BD
 export type PokemonTeamMember = Pick<
   PokemonInfo,
   'name' | 'sprites' | 'stats'
@@ -68,6 +76,7 @@ export type PokemonToSaveInBD = {
   sprite_normal: PokemonInfo['sprites']['normal'];
   sprite_shiny: PokemonInfo['sprites']['shiny'];
 };
+//FIN DE MODELOS DE LA BD
 export type PokemonCard = Pick<
   Pokemon,
   | 'pokemonId'
@@ -79,4 +88,5 @@ export type PokemonCard = Pick<
   | 'types'
   | 'sprites'
   | 'evolvesFrom'
+  | 'stats'
 >;

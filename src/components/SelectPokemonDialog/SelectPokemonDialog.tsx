@@ -3,6 +3,7 @@ import React, {
   SetStateAction,
   useContext,
   useEffect,
+  useId,
   useRef,
   useState,
 } from 'react';
@@ -36,6 +37,7 @@ const SelectPokemonDialog = ({
   setTeamArr,
   setFavoritePokemon,
 }: SelectPokemonDialogProps): React.JSX.Element => {
+  const pokemonCardID: string = useId();
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [loadingMorePokemon, setLoadingMorePokemon] = useState<boolean>(false);
   const dialogRef = useRef<HTMLDialogElement | null>(null);
@@ -51,6 +53,7 @@ const SelectPokemonDialog = ({
         shiny: 'SHINY_SPRITE',
       },
       types: ['POKEMON_TYPE_1', 'POKEMON_TYPE_2'],
+      stats: [],
     },
   ]);
 
@@ -65,6 +68,7 @@ const SelectPokemonDialog = ({
             shiny: 'SHINY_SPRITE',
           },
           types: ['POKEMON_TYPE_1', 'POKEMON_TYPE_2'],
+          stats: [],
         },
       ],
       lastUrl: null,
@@ -99,6 +103,7 @@ const SelectPokemonDialog = ({
               shiny: pokemon.sprites.shiny,
               icon: pokemon.sprites.icon,
             },
+            stats: pokemon.stats,
             types: pokemon.types,
           };
         },
@@ -126,6 +131,7 @@ const SelectPokemonDialog = ({
   };
 
   const handleSelectPokemon = (pokemonSelected: ShortViewPokemon) => {
+    console.log(pokemonSelected);
     if (componentMode === 'team' && teamArr && setTeamArr) {
       const newTeamArr: (ShortViewPokemon | null)[] = teamArr.map(
         (item: ShortViewPokemon | null, index: number) => {
@@ -165,6 +171,7 @@ const SelectPokemonDialog = ({
                 shiny: pokemon.sprites.shiny,
                 icon: pokemon.sprites.icon,
               },
+              stats: pokemon.stats,
               types: pokemon.types,
             };
           },
@@ -221,7 +228,7 @@ const SelectPokemonDialog = ({
                   const formatedName = capitalizeText(pokemon.name);
                   return (
                     <button
-                      key={pokemon.name}
+                      key={`${pokemonCardID}-${pokemon.name}`}
                       className={`${style.pokemonButton}`}
                       onClick={() => handleSelectPokemon(pokemon)}
                       title={`Choose ${formatedName} for your team?`}

@@ -22,11 +22,6 @@ import Pokemon from '@pages/Pokemon/Pokemon';
 import Item from '@pages/Item/Item';
 import ComparePokemon from '@pages/ComparePokemon/ComparePokemon';
 import EntrenadorProfile from '@pages/EntrenadorProfile/EntrenadorProfile.tsx';
-import SelectionTypeDialog from '@components/SelectionTypeDialog/SelectionTypeDialog.tsx';
-import { Types } from '@data/types.ts';
-import Header from '@components/Header/Header.tsx';
-import EntrenadorPreferences from '@components/EntrenadorPreferences/EntrenadorPreferences.tsx';
-
 
 const App = (): JSX.Element => {
   const [search, setSearch] = useState<SearchLabelContextType>('');
