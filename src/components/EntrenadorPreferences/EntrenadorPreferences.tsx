@@ -1,15 +1,15 @@
 import React, { useId } from 'react';
+import { Link } from 'react-router-dom';
 import TypeButton from '@components/TypeButton/TypeButton.tsx';
 import PokemonSummaryView from '@components/PokemonSummaryView/PokemonSummaryView.tsx';
 import ShowTrainerTeam from '@components/ShowTrainerTeam/ShowTrainerTeam.tsx';
 import RegionCard from '@components/RegionCard/RegionCard.tsx';
 import { EntrenadorProfileInfo } from '@models/entreador';
+import { PokemonTeam } from '@models/pokemonTeam';
 import { getRegionDataByName } from '@utils/regionData.ts';
 import { getTypeDataByName } from '@utils/typeData.ts';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import styles from '@components/EntrenadorPreferences/EntrenadorPreferences.module.css';
-import { PokemonTeam } from '@models/pokemonTeam';
-import { Link } from 'react-router-dom';
 
 type EntrenadorPreferencesProps = {
   tipoFavorito: EntrenadorProfileInfo['tipoPreferido'];
@@ -47,8 +47,12 @@ const EntrenadorPreferences = ({
           <article className={`${styles.preferenceItem}`}>
             <h5 className={`${styles.subtitle}`}>Tipo preferido</h5>
             <div className={`${styles.wrapper}`}>
-              {favoriteType && (
+              {favoriteType ? (
                 <TypeButton name={favoriteType.name} logo={favoriteType.logo} />
+              ) : (
+                <p className={`${styles.emptyMessage}`}>
+                  No has seleccionado tipo favorito
+                </p>
               )}
             </div>
           </article>
@@ -56,13 +60,17 @@ const EntrenadorPreferences = ({
           <article className={`${styles.preferenceItem}`}>
             <h5 className={`${styles.subtitle}`}>Pokemon favorito</h5>
             <div className={`${styles.wrapper}`}>
-              {pokemonFavorito && (
+              {pokemonFavorito ? (
                 <PokemonSummaryView
                   name={pokemonFavorito.name}
                   types={pokemonFavorito.types}
                   sprites={pokemonFavorito.sprites}
                   isShiny={false}
                 />
+              ) : (
+                <p className={`${styles.emptyMessage}`}>
+                  No has seleccionado Pokémon favorito
+                </p>
               )}
             </div>
           </article>
@@ -70,7 +78,13 @@ const EntrenadorPreferences = ({
           <article className={`${styles.preferenceItem}`}>
             <h5 className={`${styles.subtitle}`}>Region preferida</h5>
             <div className={`${styles.wrapper}`}>
-              {favoriteRegion && <RegionCard region={favoriteRegion} />}
+              {favoriteRegion ? (
+                <RegionCard region={favoriteRegion} />
+              ) : (
+                <p className={`${styles.emptyMessage}`}>
+                  No has seleccionado region favorita
+                </p>
+              )}
             </div>
           </article>
         </section>
@@ -90,7 +104,16 @@ const EntrenadorPreferences = ({
           </Link>
         </section>
 
-        <section className={`${styles.teamsContainer}`}>{trainerTeams}</section>
+        <section className={`${styles.teamsContainer}`}>
+          {trainerTeams.length > 0 ? (
+            trainerTeams
+          ) : (
+            <p className={`${styles.emptyMessage}`}>
+              No hay equipos para mostrar. <br/>
+              Crea tu primer equipo Pokémon dandole al boton verde.
+            </p>
+          )}
+        </section>
       </section>
     </article>
   );
