@@ -165,3 +165,37 @@ select:focus {
 .googleBtn img {
   width: 18px;
 }
+
+.fakeSelectButton {
+    width: 100%;
+    padding: 12px 15px;
+    border-radius: 10px;
+    border: 2px solid rgb(88, 163, 88);
+    background: white;
+    font-size: 1rem;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+    color: #333;
+}
+
+/* Texto placeholder estilo gris */
+.fakeSelectButton:empty::after {
+    content: "--- Select a Pokémon ---";
+    color: gray;
+}
+
+/* Flecha al lado derecho */
+.fakeSelectButton::after {
+    content: "▾";
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+    color: white;
+    background: rgb(88, 163, 88);
+    padding: 5px 10px;
+    border-radius: 8px;
+}
+

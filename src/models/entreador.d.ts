@@ -16,9 +16,9 @@ export interface EntrenadorToBD {
   nombre: string;
   email: string;
   contrasenia: string;
-  region_preferida?: string | null;
-  tipo_preferido?: string | null;
-  pokemon_favorito?: PokemonToSaveInBD | null;
+  region_preferida: string | null;
+  tipo_preferido: string | null;
+  pokemon_favorito: PokemonToSaveInBD | null;
 }
 
 export type EntrenadorEquipoToDB = {
