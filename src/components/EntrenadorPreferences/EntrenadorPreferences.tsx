@@ -9,6 +9,7 @@ import { getTypeDataByName } from '@utils/typeData.ts';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import styles from '@components/EntrenadorPreferences/EntrenadorPreferences.module.css';
 import { PokemonTeam } from '@models/pokemonTeam';
+import { Link } from 'react-router-dom';
 
 type EntrenadorPreferencesProps = {
   tipoFavorito: EntrenadorProfileInfo['tipoPreferido'];
@@ -79,14 +80,14 @@ const EntrenadorPreferences = ({
         <section className={`${styles.teamsHeader}`}>
           <h3 className={`${styles.title}`}>Equipos Pokémon</h3>
 
-          <a
-            href=""
+          <Link
+            to={'/create-team'}
             className={`${styles.addTeamButton}`}
             title={`Agregar equipo`}
           >
             <span className={`${styles.textWrapper}`}>Agregar equipo</span>
             <MdOutlineCatchingPokemon className={`${styles.icon}`} />
-          </a>
+          </Link>
         </section>
 
         <section className={`${styles.teamsContainer}`}>{trainerTeams}</section>

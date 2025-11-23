@@ -71,6 +71,7 @@
   background-color: rgb(var(--primary-color));
   border: 1px solid rgb(var(--text-dark-color));
   border-radius: 1rem;
+  box-shadow: 0px 0px 12px rgb(var(--text-dark-color)) inset;
   color: rgb(var(--text-light-color));
   font-family: var(--text-font);
   font-size: 1.1rem;
@@ -87,6 +88,10 @@
   outline: 2px solid rgb(var(--text-dark-color));
   /* color: rgb(var(--text-dark-color)); */
   /* background-image: url(/src/assets/pokemonTypes/dragon.png); */
+}
+
+.button:active {
+    box-shadow: none;
 }
 
 @media (max-width: 1024px) {

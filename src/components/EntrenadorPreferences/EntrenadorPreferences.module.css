@@ -85,14 +85,21 @@
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
-  padding: 0.2rem 0.5rem;
+  padding: 0.3rem 0.8rem;
   border-radius: 0.5rem;
-  box-shadow: 0px 0px 2px rgb(var(--text-dark-color));
+  background-color: rgb(var(--secondary-color));
+  box-shadow: 0px 0px 6px rgb(var(--text-dark-color)) inset;
   font-family: var(--text-font);
   font-size: 1rem;
   font-weight: 600;
   color: rgb(var(--text-dark-color));
   text-decoration: none;
+  transition: all 250ms;
+}
+
+.addTeamButton:hover {
+  background-color: rgb(var(--acent-color));
+  color: rgb(var(--text-light-color));
 }
 
 .textWrapper {
