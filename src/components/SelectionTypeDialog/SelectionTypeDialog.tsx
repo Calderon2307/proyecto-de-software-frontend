@@ -2,7 +2,6 @@ import React from 'react';
 import { TypeData } from '@models/types';
 import style from '@components/SelectionTypeDialog/SelectionTypeDialog.module.css';
 import SearchBar from '@components/SearchBar/SearchBar';
-import TypeButton from '@components/TypeButton/TypeButton';
 
 interface SelectionTypeDialogProps {
   isOpen: boolean;
@@ -16,36 +15,59 @@ const SelectionTypeDialog: React.FC<SelectionTypeDialogProps> = ({
   types,
   onClose,
   onSelectType,
-}): React.JSX.Element | null => {
-  if (!isOpen) {
-    return null;
-  }
-  console.log('types en modal:', types);
-  return (
-    <div className={style.backdrop}>
-      <div className={style.dialog}>
-        <header className={style.header}>
-          <h2 className={style.title}>Select one Type</h2>
+}) => {
+  if (!isOpen) return null;
 
+  return (
+    <div className={style.backdrop} role="dialog" aria-modal="true">
+      <div className={style.dialog}>
+        {/* Header */}
+        <header className={style.header}>
+          <h2 className={style.title}>Select a Type</h2>
           <button
             type="button"
-            onClick={onClose}
             className={style.closeButton}
-            aria-label="Close dialog"
+            onClick={onClose}
+            aria-label="Close"
           >
             ✕
           </button>
         </header>
 
-        <main>
-          <SearchBar showButton={false} />
+        {/* Texto descriptivo (opcional) */}
+        <p className={style.contentText}>
+          Choose your preferred Pokémon type. This will be saved in your trainer
+          profile.
+        </p>
 
-          <div className={style.typesGrid}>
-            {types.map((type) => (
-              <TypeButton key={type.name} name={type.name} logo={type.logo} />
-            ))}
-          </div>
-        </main>
+        {/* Barra de búsqueda visual (usa SearchContext internamente, aquí solo es estética) */}
+        <SearchBar showButton={false} />
+
+        {/* Grid de tipos */}
+        <div className={style.typesGrid}>
+          {types.map((type) => (
+            <button
+              key={type.name}
+              type="button"
+              className={`${type.name} ${style.typeCard}`}
+              onClick={() => {
+                onSelectType(type.name);
+                onClose();
+              }}
+            >
+              <div className={style.typeLogoWrapper}>
+                <img
+                  src={type.logo}
+                  alt={`${type.name} type logo`}
+                  className={style.typeLogo}
+                />
+              </div>
+              <span className={style.typeName}>
+                {type.name.toUpperCase()}
+              </span>
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
