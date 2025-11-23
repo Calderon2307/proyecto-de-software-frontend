@@ -43,7 +43,7 @@ const App = (): JSX.Element => {
           <SearchLabelContext.Provider value={search}>
             <UpdateSearchLabelContext.Provider value={handleSearchLabel}>
               <Routes>
-                <Route path="/Home" element={<Home />} />
+                <Route path="/home" element={<Home />} />
                 <Route path="/" element={<Index />} />
                 <Route path="/search-pokemon" element={<SearchPokemon />} />
                 <Route path="/oauth/redirect" element={<OAuthCallback />} />
@@ -65,7 +65,7 @@ const App = (): JSX.Element => {
                 <Route path="/items/:itemId/:itemName" element={<Item />} />
                 <Route path="/compare-pokemon" element={<ComparePokemon />} />
 
-                <Route path="/preview" element={<EntrenadorProfile />} />
+                <Route path="/entrenador-profile" element={<EntrenadorProfile />} />
               </Routes>
             </UpdateSearchLabelContext.Provider>
           </SearchLabelContext.Provider>

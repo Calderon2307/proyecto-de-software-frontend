@@ -21,7 +21,7 @@ const Header: React.FC<Props> = ({
     >
       {mode === 'complete' ? (
         <>
-          <Link to={'/'} className={`${style.titleLink}`} title="Go home">
+          <Link to={'/home'} className={`${style.titleLink}`} title="Go home">
             <h1 className={`${style.title}`}>Pokedex</h1>
           </Link>
           {showSearchBar && (
@@ -31,17 +31,17 @@ const Header: React.FC<Props> = ({
             />
           )}
           <Link
-            to={'/create-team'}
+            to={'/entrenador-profile'}
             className={`${style.button}`}
-            title={`Create a Pokémon team`}
+            title={`Go to your profile`}
           >
-            Create Team
+            Perfil
           </Link>{' '}
         </>
       ) : (
         <>
 
-          <Link to={'/'} className={style.titleLink} title="Go home">
+          <Link to={'/home'} className={style.titleLink} title="Go home">
             <h1 className={style.title}>Pokedex</h1>
           </Link>
 
@@ -62,8 +62,8 @@ const Header: React.FC<Props> = ({
             <Link to="/pokedex/pokemon/all" className={style.navLink}>
               Todos los Pokemon
             </Link>
-            <Link to="/create-team" className={style.navLink}>
-              Crear Equipo
+            <Link to="/entrenador-profile" className={style.navLink}>
+              Perfil
             </Link>
           </nav>
 
