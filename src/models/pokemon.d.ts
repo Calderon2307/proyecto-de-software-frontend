@@ -2,7 +2,6 @@ import { Move } from '@models/moves';
 import { Ability } from '@models/ability';
 import { TypeRelation } from '@models/types';
 
-export type ShortViewPokemon = Pick<PokemonInfo, 'name' | 'sprites' | 'types'>;
 type ChangePokemon = Pick<PokemonInfo, 'pokedexNumber' | 'name' | 'sprites'>;
 type StatusPokemon = 'legendario' | 'mitico' | 'pseudo-legendario' | 'normal';
 type PrevEvolution = Pick<PokemonInfo, 'name' | 'sprites' | 'pokedexNumber'>;
@@ -57,6 +56,27 @@ export interface PokemonSpecieInfo {
 }
 
 export type Pokemon = PokemonInfo & PokemonSpecieInfo;
+export type ShortViewPokemon = Pick<
+  PokemonInfo,
+  'name' | 'sprites' | 'types'
+> & {
+  stats?: PokemonInfo['stats'];
+};
+//HACER STATS OPCIONALES PARA DESPUES Y CARGARLAS CUANDO SEA NECESARIO
+
+//MODELOS DE LA BD
+export type PokemonTeamMember = Pick<
+  PokemonInfo,
+  'name' | 'sprites' | 'stats'
+> & { posicionEquipo: number };
+export type PokemonToSaveInBD = {
+  nombre: PokemonInfo['name'];
+  tipos: PokemonInfo['types'];
+  stats: PokemonInfo['stats'];
+  sprite_normal: PokemonInfo['sprites']['normal'];
+  sprite_shiny: PokemonInfo['sprites']['shiny'];
+};
+//FIN DE MODELOS DE LA BD
 export type PokemonCard = Pick<
   Pokemon,
   | 'pokemonId'
@@ -68,4 +88,5 @@ export type PokemonCard = Pick<
   | 'types'
   | 'sprites'
   | 'evolvesFrom'
+  | 'stats'
 >;

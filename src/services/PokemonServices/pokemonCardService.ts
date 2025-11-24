@@ -11,6 +11,15 @@ type NameMeaningAPIModel = {
   };
 };
 
+type StatsApiModel = {
+  base_stat: number;
+  effort: number;
+  stat: {
+    name: string;
+    url: string;
+  };
+};
+
 export const fetchPokemonCard = async (
   pokemonNameOrId: string,
 ): Promise<PokemonCard> => {
@@ -19,6 +28,15 @@ export const fetchPokemonCard = async (
     const name_meaning = await fetchNameMeannig(data.species.url);
     const pre_evol = await fetchPreEvol(data.species.url);
     const pokeID = await fetchPokemonIdPokedex(data.species.url);
+
+    const pokemonStats = await data.stats.map(
+      (stat: StatsApiModel) => {
+        return {
+          statName: stat.stat.name,
+          baseStat: stat.base_stat,
+        };
+      },
+    );
 
     return {
       pokemonId: data.id,
@@ -40,6 +58,7 @@ export const fetchPokemonCard = async (
           data.sprites.other['official-artwork'].front_default ??
           data.sprites.front_default,
       },
+      stats: pokemonStats,
       evolvesFrom: pre_evol,
     };
   } catch (err) {
