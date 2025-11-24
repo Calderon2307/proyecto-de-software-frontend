@@ -3,7 +3,7 @@
 import axios, { AxiosInstance, InternalAxiosRequestConfig } from 'axios';
 
 // URL base del backend
-const BASE_URL = 'http://localhost:8080/api/v2'; 
+const BASE_URL = 'https://proyecto-de-software-backend.onrender.com/api/v2'; 
 
 const api: AxiosInstance = axios.create({
   baseURL: BASE_URL,
