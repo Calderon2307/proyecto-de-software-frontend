@@ -33,10 +33,7 @@ const EntrenadorInfo = ({ nombre }: EntrenadorInfoProps): React.JSX.Element => {
         <h3 className={`${styles.userName}`}>{nombre}</h3>
       </section>
       <section className={`${styles.settingsSection}`}>
-        <a href="#" className={`${styles.link}`} title={`Editar perfil`}>
-          <span className={`${styles.textWrapper}`}>Editar perfil</span>
-          <MdOutlineSettings className={`${styles.icon}`} />
-        </a>
+
       </section>
     </article>
   );

@@ -22,14 +22,17 @@ const EntrenadorPreferences = ({
   tipoFavorito,
   regionFavorita,
   pokemonFavorito,
-  equiposPokemon,
+  // 🛑 CORRECCIÓN: Aplicar el valor por defecto [] en la desestructuración.
+  equiposPokemon = [],
 }: EntrenadorPreferencesProps): React.JSX.Element => {
   const teamId: string = useId();
 
   const favoriteType = getTypeDataByName(tipoFavorito);
   const favoriteRegion = getRegionDataByName(regionFavorita);
 
-  const trainerTeams: React.JSX.Element[] = equiposPokemon.map(
+  // El mapeo ahora es seguro ya que equiposPokemon siempre es un array ([]),
+  // resolviendo el error Uncaught TypeError.
+  const trainerTeams: React.JSX.Element[] = (equiposPokemon).map(
     (team: PokemonTeam, index: number): React.JSX.Element => (
       <ShowTrainerTeam
         key={`${teamId}-team-${index}`}

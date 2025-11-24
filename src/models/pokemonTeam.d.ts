@@ -1,6 +1,8 @@
-import {PokemonTeamMember} from '@models/pokemon';
+import { PokemonTeamMember } from './pokemon';
 
 export interface PokemonTeam {
+  teamId?: number;
   teamName: string;
   pokemonTeam: PokemonTeamMember[];
+  fechaCreacion?: string;
 }
